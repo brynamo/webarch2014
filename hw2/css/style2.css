@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+	font-size:18px;
+}
+
+.tallest_div {
+	margin-bottom: 40px;
+}

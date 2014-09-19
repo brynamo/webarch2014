@@ -1,40 +1,95 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Madlib!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
-    </head>
-    <body>
-		<form id="madlib-input">
-			<p>Please Input your answers below!</p>
-			<!-- inputs... -->
-		</form>
-		
-		<div id="madlib-output">
-		</div>
+	<head>
+	<meta charset="utf-8">
+		<title>Madlib!</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+	</head>
+	<body>
+			<form id="madlib-input">
+						<p>Please Input your answers below!</p>
+						
+						<p><label for="txt1">Enter an Adjuctive</label>
+						<input type="text" id="txt1">
+						</p>
+						
+						<p><label for="txt2">Enter an Adjuctive</label>
+						<input type="text" id="txt2">
+						</p>
+						
+						<p><label for="txt3">Enter a Noun</label>
+						<input type="text" id="txt3">
+						</p>
+						
+						<p><label for="txt4">Enter a Noun</label>
+						<input type="text" id="txt4">
+						</p>
+						
+						<p><label for="num1">Enter a Number Less than 10</label>
+						<input type="text" id="num1">
+						</p>
+						
+						<label for="pluralNoun1">Plural Noun</label><br>
+						<p><input type="radio" name="pluralNoun1" value="Dragons">Dragons</p>
+						<p><input type="radio" name="pluralNoun1" value="Rollercoasters">Rollercoasters</p>
+						<p><input type="radio" name="pluralNoun1" value="Whales">Whales</p>
+						
+						<label for="pluralNoun1">Game</label>
+						<p><input type="checkbox" name="game1" value="Tennis">Tennis</p>
+						<p><input type="checkbox" name="game1" value="Basketball">Basketball</p>
+						<p><input type="checkbox" name="game1" value="Polo">Polo</p>
+						
+						<select id="sel1">
+							<option value="spiders">spiders</option>
+							<option value="aliens">aliens</option>
+							<option value="snakes">snakes</option>
+							<option value="deals">deals</option>
+						</select>
+							
+						
+						<button type="submit">LEMME SEE!!!!!!!</button>
+						
+				</form>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<!-- Optionally include other scripts
-        <script src="js/main.js"></script>
-		-->
+				<div style="display:none" id="madlib-output">
+				<p>A vacation is when you take a trip to some <span id="adj1"></span> place with your <span id="adj2"></span> family. Usually you go to some place that is near a/an <span id="noun1"></span> or up on a/an <span id="noun2"></span>. A good vacation place is one where there are at least <span id="number1"></span> things to do, like riding <span id="radio1"></span> or playing <span id="check1"></span> or go hunting for <span id="select1"></span>.
+				
+				</p>
+				</div>
 
-        <!-- You may add Javascript functions below -->
-        <script>
-			function validate() {
-				if ($("input:first").val() == "correct") {
-					$("#madlib-output").text("input: correct");
-				} else {
-					alert("Error!");
-				}
-				return false;
-			}
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script>
+						function validate() {
+						if (		
+						($("#txt1").val() != "") && 
+						($("#txt2").val() != "") && 
+						($("#txt3").val() != "blue") && 
+						($("#txt4").val() != "") && 
+						($("#num1").val() != "") && 
+						($("#num1").val() < 10) &&
+						($("input[name=pluralNoun1]:checked").length > 0) && 
+						($("input[name=game1]:checked").length > 0) && 
+						($('#sel1').val() != "") 	) {
+							$('#adj1').html($('#txt1').val());
+							$('#adj2').html($('#txt2').val());
+							$('#noun1').html($('#txt3').val());
+							$('#noun2').html($('#txt4').val());
+							$('#number1').html($('#num1').val());
+							$('#radio1').html($("input[name=pluralNoun1]:checked").val());
+							$('#check1').html($("input[name=game1]:checked").val());
+							$('#select1').html($('#sel1').val());
+							document.getElementById("madlib-output").style.display = "block";
+						}
+						else {
+							alert("Error! Did you fill out all the fields?");
+						}
+						return false;
+						}
 
-			$(document).ready(function() {
-				$("#madlib-input").submit(validate);
-				console.log("ready!");
-			});
-        </script>
-    </body>
+						$(document).ready(function() {
+							$("#madlib-input").submit(validate);
+						});
+		</script>
+	</body>
 </html>

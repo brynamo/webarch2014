@@ -135,3 +135,30 @@ yelp.com.		86400	IN	NS	ns3.p18.dynect.net.
 yelp.com.		86400	IN	NS	ns4.p18.dynect.net.
 
 Received 151 bytes from 208.78.70.18#53 in 19 ms
+
+---------------------------------------------------------------------------------------
+
+2.
+m.sfo1.yelp.com.	60	IN	A	199.255.189.34
+m.sfo1.yelp.com.	60	IN	A	199.255.189.234
+
+and
+
+m.sfo2.yelp.com.	60	IN	A	198.51.132.34
+m.sfo2.yelp.com.	60	IN	A	198.51.132.234
+
+---------------------------------------------------------------------------------------
+
+3.
+No it does not leave Berkeley.
+
+harbinger:~$ traceroute amplab.cs.berkeley.edu
+traceroute to amplab.cs.berkeley.edu (128.32.37.248), 30 hops max, 60 byte packets
+ 1  g3-35.inr-211-srb.Berkeley.EDU (128.32.78.3)  0.895 ms  0.885 ms  1.027 ms
+ 2  t6-1.inr-202-reccev.Berkeley.EDU (128.32.255.126)  0.720 ms  0.712 ms  0.828 ms
+ 3  reccev-eecs-br-10GE.EECS.Berkeley.EDU (128.32.255.58)  1.986 ms  1.966 ms  1.955 ms
+ 4  soda-10g-edge.EECS.Berkeley.EDU (169.229.59.242)  2.440 ms  2.445 ms  2.584 ms
+ 5  www-research2.CS.Berkeley.EDU (128.32.37.248)  1.550 ms !X  1.547 ms !X  1.628 ms !X
+
+---------------------------------------------------------------------------------------
+

@@ -1,0 +1,137 @@
+1. 
+There are 4 calls:
+
+199.7.83.42
+192.5.6.30
+208.78.70.18
+199.255.189.34
+
+
+Bryans-MacBook-Pro:~ brynamo$ host -v -t A m.yelp.com 199.7.83.42
+Trying "m.yelp.com"
+Using domain server:
+Name: 199.7.83.42
+Address: 199.7.83.42#53
+Aliases: 
+
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 1702
+;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 13, ADDITIONAL: 14
+
+;; QUESTION SECTION:
+;m.yelp.com.			IN	A
+
+;; AUTHORITY SECTION:
+com.			172800	IN	NS	a.gtld-servers.net.
+com.			172800	IN	NS	b.gtld-servers.net.
+com.			172800	IN	NS	c.gtld-servers.net.
+com.			172800	IN	NS	d.gtld-servers.net.
+com.			172800	IN	NS	e.gtld-servers.net.
+com.			172800	IN	NS	f.gtld-servers.net.
+com.			172800	IN	NS	g.gtld-servers.net.
+com.			172800	IN	NS	h.gtld-servers.net.
+com.			172800	IN	NS	i.gtld-servers.net.
+com.			172800	IN	NS	j.gtld-servers.net.
+com.			172800	IN	NS	k.gtld-servers.net.
+com.			172800	IN	NS	l.gtld-servers.net.
+com.			172800	IN	NS	m.gtld-servers.net.
+
+;; ADDITIONAL SECTION:
+a.gtld-servers.net.	172800	IN	A	192.5.6.30
+b.gtld-servers.net.	172800	IN	A	192.33.14.30
+c.gtld-servers.net.	172800	IN	A	192.26.92.30
+d.gtld-servers.net.	172800	IN	A	192.31.80.30
+e.gtld-servers.net.	172800	IN	A	192.12.94.30
+f.gtld-servers.net.	172800	IN	A	192.35.51.30
+g.gtld-servers.net.	172800	IN	A	192.42.93.30
+h.gtld-servers.net.	172800	IN	A	192.54.112.30
+i.gtld-servers.net.	172800	IN	A	192.43.172.30
+j.gtld-servers.net.	172800	IN	A	192.48.79.30
+k.gtld-servers.net.	172800	IN	A	192.52.178.30
+l.gtld-servers.net.	172800	IN	A	192.41.162.30
+m.gtld-servers.net.	172800	IN	A	192.55.83.30
+a.gtld-servers.net.	172800	IN	AAAA	2001:503:a83e::2:30
+
+Received 488 bytes from 199.7.83.42#53 in 28 ms
+Bryans-MacBook-Pro:~ brynamo$ host -v -t A m.yelp.com 192.5.6.30
+Trying "m.yelp.com"
+Using domain server:
+Name: 192.5.6.30
+Address: 192.5.6.30#53
+Aliases: 
+
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 36401
+;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 4
+
+;; QUESTION SECTION:
+;m.yelp.com.			IN	A
+
+;; AUTHORITY SECTION:
+yelp.com.		172800	IN	NS	ns1.p18.dynect.net.
+yelp.com.		172800	IN	NS	ns3.p18.dynect.net.
+yelp.com.		172800	IN	NS	ns2.p18.dynect.net.
+yelp.com.		172800	IN	NS	ns4.p18.dynect.net.
+
+;; ADDITIONAL SECTION:
+ns1.p18.dynect.net.	172800	IN	A	208.78.70.18
+ns3.p18.dynect.net.	172800	IN	A	208.78.71.18
+ns2.p18.dynect.net.	172800	IN	A	204.13.250.18
+ns4.p18.dynect.net.	172800	IN	A	204.13.251.18
+
+Received 178 bytes from 192.5.6.30#53 in 87 ms
+Bryans-MacBook-Pro:~ brynamo$ host -v -t A m.yelp.com 208.78.70.18
+Trying "m.yelp.com"
+Using domain server:
+Name: 208.78.70.18
+Address: 208.78.70.18#53
+Aliases: 
+
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 10237
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;m.yelp.com.			IN	A
+
+;; ANSWER SECTION:
+m.yelp.com.		60	IN	CNAME	m.gslb.yelp.com.
+
+Bryans-MacBook-Pro:~ brynamo$ host -v -t A m.gslb.yelp.com 208.78.70.18
+Trying "m.gslb.yelp.com"
+Using domain server:
+Name: 208.78.70.18
+Address: 208.78.70.18#53
+Aliases: 
+
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27166
+;; flags: qr aa rd; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;m.gslb.yelp.com.		IN	A
+
+;; ANSWER SECTION:
+m.gslb.yelp.com.	30	IN	CNAME	m.sfo1.yelp.com.
+
+Received 54 bytes from 208.78.70.18#53 in 25 ms
+Bryans-MacBook-Pro:~ brynamo$ host -v -t A m.sfo1.yelp.com 208.78.70.18
+Trying "m.sfo1.yelp.com"
+Using domain server:
+Name: 208.78.70.18
+Address: 208.78.70.18#53
+Aliases: 
+
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 54579
+;; flags: qr aa rd; QUERY: 1, ANSWER: 2, AUTHORITY: 4, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;m.sfo1.yelp.com.		IN	A
+
+;; ANSWER SECTION:
+m.sfo1.yelp.com.	60	IN	A	199.255.189.34
+m.sfo1.yelp.com.	60	IN	A	199.255.189.234
+
+;; AUTHORITY SECTION:
+yelp.com.		86400	IN	NS	ns2.p18.dynect.net.
+yelp.com.		86400	IN	NS	ns1.p18.dynect.net.
+yelp.com.		86400	IN	NS	ns3.p18.dynect.net.
+yelp.com.		86400	IN	NS	ns4.p18.dynect.net.
+
+Received 151 bytes from 208.78.70.18#53 in 19 ms

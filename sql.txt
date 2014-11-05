@@ -1,0 +1,157 @@
+******1. Select******
+---------------------------------------------------------------------------------------------
+###
+ 1
+###
+mysql> select * from links where created >= '2014-10-14' order by created;
++-----------------------------------+-----------+-----------+------------+
+| long_url                          | short_url | hit_count | created    |
++-----------------------------------+-----------+-----------+------------+
+| http://hao123.com                 | 9e898     |       181 | 2014-10-15 |
+| http://live.com                   | d2c05     |        67 | 2014-10-15 |
+| http://google.com                 | 891cb     |       137 | 2014-10-16 |
+| http://ebay.com                   | b0f7e     |        76 | 2014-10-17 |
+| http://wordpress.com              | 8686e     |       142 | 2014-10-20 |
+| http://baidu.com                  | 71bce     |        71 | 2014-10-22 |
+| http://gmail.com                  | gmail     |       101 | 2014-10-28 |
+| http://disney.com                 | disne     |        51 | 2014-11-01 |
+| http://imgur.com/gallery/VskUDjn/ | meeoooww? |       420 | 2014-11-02 |
+| http://jong.me                    | hello     |     10001 | 2014-11-04 |
++-----------------------------------+-----------+-----------+------------+
+10 rows in set (0.00 sec)
+
+###
+ 2
+###
+mysql> select * from links where created >= '2014-10-14' and hit_count < 40 order by created;
+Empty set (0.00 sec)
+
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+
+******2. Insert******
+---------------------------------------------------------------------------------------------
+
+###
+ 1
+###
+
+mysql> insert into links (long_url, short_url, hit_count, created)
+    -> values ('http://www.google.com/settings/ads', 'google_ads', 100, '2014-10-12')
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from links;
++------------------------------------+------------+-----------+------------+
+| long_url                           | short_url  | hit_count | created    |
++------------------------------------+------------+-----------+------------+
+| http://163.com                     | 80650      |       114 | 2014-09-05 |
+| http://amazon.com                  | b4556      |        97 | 2014-10-11 |
+| http://andrewhuang.me              | andy       |        89 | 2014-10-11 |
+| http://anubhav.com                 | arg        |       371 | 2014-05-15 |
+| http://baidu.com                   | 71bce      |        71 | 2014-10-22 |
+| http://berkeley.edu                | cal        |    100002 | 1868-03-23 |
+| http://bing.com                    | 38c1c      |        65 | 2014-09-08 |
+| http://blogspot.com                | 04789      |        32 | 2014-09-14 |
+| http://cmlasa.com                  |            |    701001 | 2014-07-01 |
+| http://disney.com                  | disne      |        51 | 2014-11-01 |
+| http://ebay.com                    | b0f7e      |        76 | 2014-10-17 |
+| http://eecs.berkeley.edu/          | abcd       |        51 | 2014-10-01 |
+| http://facebook.com                | 6733e      |        32 | 2014-08-30 |
+| http://gmail.com                   | gmail      |       101 | 2014-10-28 |
+| http://google.co.in                | f1ab0      |       142 | 2014-09-14 |
+| http://google.com                  | 891cb      |       137 | 2014-10-16 |
+| http://google.de                   | 5f379      |         7 | 2014-10-07 |
+| http://hao123.com                  | 9e898      |       181 | 2014-10-15 |
+| http://imgur.com/gallery/VskUDjn/  | meeoooww?  |       420 | 2014-11-02 |
+| http://jong.me                     | hello      |     10001 | 2014-11-04 |
+| http://kristina.com                | sep        |       124 | 2013-12-23 |
+| http://linkedin.com                | d4234      |       194 | 2014-10-04 |
+| http://live.com                    | d2c05      |        67 | 2014-10-15 |
+| http://mashable.com                | mashq      |        42 | 2013-10-14 |
+| http://mercurynews.com             | blomo      |       145 | 2001-10-14 |
+| http://nytimes.com                 | kevka      |       144 | 0000-00-00 |
+| http://qq.com                      | cab9d      |       196 | 2014-09-13 |
+| http://sina.com.cn                 | f3770      |       157 | 2014-10-12 |
+| http://taobao.com                  | dd29a      |        78 | 2014-09-26 |
+| http://tumblr.com                  | 27ca7      |       174 | 2014-09-28 |
+| http://twitter.com                 | 77532      |        61 | 2014-09-20 |
+| http://urbandictionary.com         | yo         |        46 | 2013-11-24 |
+| http://vk.com                      | 4cb96      |       127 | 2014-10-13 |
+| http://wikipedia.org               | e249b      |       142 | 2014-08-30 |
+| http://wordpress.com               | 8686e      |       142 | 2014-10-20 |
+| http://www.crunchyroll.com         | crunchy    |       421 | 2014-10-02 |
+| http://www.google.com/settings/ads | google_ads |       100 | 2014-10-12 |
+| http://yahoo.co.jp                 | 8b26f      |        39 | 2014-08-31 |
+| http://yahoo.com                   | e773f      |        84 | 2014-09-29 |
+| http://yandex.ru                   | e9af1      |        78 | 2014-09-06 |
+| http://youtube.com                 | d32eb      |       117 | 2014-09-10 |
+| www.sufia.com                      | sufs       |       100 | 2014-06-02 |
++------------------------------------+------------+-----------+------------+
+42 rows in set (0.00 sec)
+
+###
+ 2
+###
+
+No it is not possible. This is MySQL instance and subsequently it follows ACID rules. This has to do with consistency and isolation. First the database goes from one consistent state to the next meaning that it is an all or nothing transaction, if there are errors nothing happens which means there would not be partial data entry. Secondly isolation prevents another user seeing what I am doing until the transaction is complete.
+
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+
+******3. Update******
+---------------------------------------------------------------------------------------------
+
+mysql> UPDATE links SET hit_count = hit_count+1 WHERE long_url = 'http://www.google.com/settings/ads';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from links
+    -> ;
++------------------------------------+------------+-----------+------------+
+| long_url                           | short_url  | hit_count | created    |
++------------------------------------+------------+-----------+------------+
+| http://163.com                     | 80650      |       114 | 2014-09-05 |
+| http://amazon.com                  | b4556      |        97 | 2014-10-11 |
+| http://andrewhuang.me              | andy       |        89 | 2014-10-11 |
+| http://anubhav.com                 | arg        |       371 | 2014-05-15 |
+| http://baidu.com                   | 71bce      |        71 | 2014-10-22 |
+| http://berkeley.edu                | cal        |    100002 | 1868-03-23 |
+| http://bing.com                    | 38c1c      |        65 | 2014-09-08 |
+| http://blogspot.com                | 04789      |        32 | 2014-09-14 |
+| http://cmlasa.com                  |            |    701001 | 2014-07-01 |
+| http://disney.com                  | disne      |        51 | 2014-11-01 |
+| http://ebay.com                    | b0f7e      |        76 | 2014-10-17 |
+| http://eecs.berkeley.edu/          | abcd       |        51 | 2014-10-01 |
+| http://facebook.com                | 6733e      |        32 | 2014-08-30 |
+| http://gmail.com                   | gmail      |       101 | 2014-10-28 |
+| http://google.co.in                | f1ab0      |       142 | 2014-09-14 |
+| http://google.com                  | 891cb      |       137 | 2014-10-16 |
+| http://google.de                   | 5f379      |         7 | 2014-10-07 |
+| http://hao123.com                  | 9e898      |       181 | 2014-10-15 |
+| http://imgur.com/gallery/VskUDjn/  | meeoooww?  |       420 | 2014-11-02 |
+| http://jong.me                     | hello      |     10001 | 2014-11-04 |
+| http://kristina.com                | sep        |       124 | 2013-12-23 |
+| http://linkedin.com                | d4234      |       194 | 2014-10-04 |
+| http://live.com                    | d2c05      |        67 | 2014-10-15 |
+| http://mashable.com                | mashq      |        42 | 2013-10-14 |
+| http://mercurynews.com             | blomo      |       145 | 2001-10-14 |
+| http://nytimes.com                 | kevka      |       144 | 0000-00-00 |
+| http://qq.com                      | cab9d      |       196 | 2014-09-13 |
+| http://sina.com.cn                 | f3770      |       157 | 2014-10-12 |
+| http://taobao.com                  | dd29a      |        78 | 2014-09-26 |
+| http://tumblr.com                  | 27ca7      |       174 | 2014-09-28 |
+| http://twitter.com                 | 77532      |        61 | 2014-09-20 |
+| http://urbandictionary.com         | yo         |        46 | 2013-11-24 |
+| http://vk.com                      | 4cb96      |       127 | 2014-10-13 |
+| http://wikipedia.org               | e249b      |       142 | 2014-08-30 |
+| http://wordpress.com               | 8686e      |       142 | 2014-10-20 |
+| http://www.crunchyroll.com         | crunchy    |       421 | 2014-10-02 |
+| http://www.google.com/settings/ads | google_ads |       101 | 2014-10-12 |
+| http://yahoo.co.jp                 | 8b26f      |        39 | 2014-08-31 |
+| http://yahoo.com                   | e773f      |        84 | 2014-09-29 |
+| http://yandex.ru                   | e9af1      |        78 | 2014-09-06 |
+| http://youtube.com                 | d32eb      |       117 | 2014-09-10 |
+| www.sufia.com                      | sufs       |       100 | 2014-06-02 |
++------------------------------------+------------+-----------+------------+
+42 rows in set (0.00 sec)

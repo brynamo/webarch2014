@@ -1,9 +1,167 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Jim's Page</title>
-    </head>
-    <body>
-        <p>Hello class! This is a tiny HTML page.</p>
-    </body>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Test Page</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+    <script>
+        $(document).on("pagecreate","#pageone",function(){
+            $(".column").on("tap",function(){
+                $(this).css("background-color", "blue");
+                $(this).css("color", "white");
+            });
+        });
+    </script>
+    <style>
+        @media (min-width: 930px) {
+            .main{
+                display: block;
+                width: 930px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            #column1 {
+                background-color: #000;
+                color: #FFFFFF;
+            }
+
+            #column2 {
+                background-color: #FFF;
+                color: #000;
+            }
+
+            #column3 {
+                background-color: #000;
+                color: #FFFFFF;
+            }
+            .secret-iphone {
+                display: none;
+            }
+        }
+
+        @media (min-width: 620px) and (max-width: 930px) {
+            .main{
+                display: block;
+                width: 620px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            #column1 {
+                background-color: #FFF;
+                color: #000;
+            }
+
+            #column2 {
+                background-color: #000;
+                color: #FFFFFF;
+            }
+
+            #column3 {
+                background-color: #FFF;
+                color: #000;
+            }
+            .secret-iphone {
+                display: none;
+            }
+        }
+
+        @media (min-width: 310px) and (max-width: 620px) {
+            .main{
+                display: block;
+                width: 310px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            #column1 {
+                background-color: #000;
+                color: #FFFFFF;
+            }
+
+            #column2 {
+                background-color: #FFF;
+                color: #000;
+            }
+
+            #column3 {
+                background-color: #000;
+                color: #FFFFFF;
+            }
+            .secret-iphone {
+                display: none;
+            }
+        }
+
+        @media screen and (device-aspect-ratio: 40/71) {
+            .main{
+                display: block;
+                width: 310px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            #column1 {
+                background-color: #000;
+                color: #FFFFFF;
+            }
+
+            #column2 {
+                background-color: #FFF;
+                color: #000;
+            }
+
+            #column3 {
+                background-color: #000;
+                color: #FFFFFF;
+            }
+
+            .secret-iphone {
+                display: block;
+            }
+        }
+        .column {
+            float: left;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0px 5px;
+            margin-top: 10px;
+        }
+
+        h1 {
+            max-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div data-role="page" id="pageone">
+        <div class="main">
+            <div class="column" id="column1">
+                <img src="img/looking.jpg">
+                <h1>What do you spose they are looking at?</h1>
+                <p>blah</p>
+            </div>
+            <div class="column" id="column2">
+                <img src="img/dancing.jpg">
+                <h1>Why's she so happy??</h1>
+                <p>blah</p>
+            </div>
+            <div class="column" id="column3">
+                <img src="img/cute.jpg">
+                <h1>How'd he get so cute??</h1>
+                <p>blah</p>
+            </div>
+            <div class="column secret-iphone" id="column4">
+                <img src="img/cutest.jpg">
+                <h1>OHHH I'M SO EXCITED FOR BREAK!</h1>
+                <p>blah</p>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
